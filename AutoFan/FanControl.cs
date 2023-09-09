@@ -6,7 +6,7 @@ namespace AutoFan
 {
 	internal class FanControl
 	{
-		private static readonly string FanControlPath = @"C:\FanControl";
+		private static readonly string FanControlPath = @"D:\FanControl";
 		private static readonly string FanControlConfig_FullSpeed = "full_speed.json";
 		private static readonly string FanControlConfig_Silent = "silent.json";
 		private static readonly string FanControlConfig_Turbo = "turbo.json";

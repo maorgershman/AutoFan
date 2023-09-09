@@ -6,11 +6,11 @@ namespace AutoFan
 	internal class PowerPlan
 	{
 		private static readonly string PowerPlan_Balanced_GUID = "381b4222-f694-41f0-9685-ff5bb260df2e";
-		private static readonly string PowerPlan_UltimatePerformance_GUID = "afe1e188-f406-464f-a156-c60b66d855ed";
+		private static readonly string PowerPlan_HighPerformance_GUID = "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c";
 
 		public enum Mode
 		{
-			Balanced, UltimatePerformance
+			Balanced, HighPerformance
 		}
 
 		public static void SetMode(Mode mode)
@@ -19,7 +19,7 @@ namespace AutoFan
 			switch (mode)
 			{
 				case Mode.Balanced: guid = PowerPlan_Balanced_GUID; break;
-				case Mode.UltimatePerformance: guid = PowerPlan_UltimatePerformance_GUID; break;
+				case Mode.HighPerformance: guid = PowerPlan_HighPerformance_GUID; break;
 			}
 
 			if (guid == null)

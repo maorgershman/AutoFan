@@ -6,7 +6,7 @@ namespace AutoFan
 {
 	internal class GamesObserver
 	{
-		private static readonly string[] ProcessesNames = new[] { "bf4" };
+		private static readonly string[] ProcessesNames = new[] { "bf4", "cod" };
 		private static readonly TimeSpan FullSpeedTime = TimeSpan.FromMinutes(5);
 
 		private static bool IsRunning = false;
@@ -35,7 +35,18 @@ namespace AutoFan
 				if (!isCurrentlyRunning && wasRunning)
 				{
 					SetGameMode(GameMode.JustFinishedPlaying);
-				}
+                    Thread.Sleep(FullSpeedTime);
+
+                    // Check if game is running again
+                    if (IsAnyProcessRunning(ProcessesNames))
+                    {
+                        FanControl.SetConfiguration(FanControl.Configuration.Turbo);
+                    }
+                    else
+                    {
+                        FanControl.SetConfiguration(FanControl.Configuration.Silent);
+                    }
+                }
 				else if (isCurrentlyRunning && !wasRunning)
 				{
 					SetGameMode(GameMode.Playing);
@@ -52,7 +63,7 @@ namespace AutoFan
 				case GameMode.Playing:
 					{
 						IsRunning = true;
-						PowerPlan.SetMode(PowerPlan.Mode.UltimatePerformance);
+						PowerPlan.SetMode(PowerPlan.Mode.HighPerformance);
 						FanControl.SetConfiguration(FanControl.Configuration.Turbo);
 					}
 					break;
@@ -67,8 +78,6 @@ namespace AutoFan
 						IsRunning = false;
 						PowerPlan.SetMode(PowerPlan.Mode.Balanced);
 						FanControl.SetConfiguration(FanControl.Configuration.FullSpeed);
-						Thread.Sleep(FullSpeedTime);
-						FanControl.SetConfiguration(FanControl.Configuration.Silent);
 					} break;
 			}
 		}
