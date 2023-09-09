@@ -40,10 +40,12 @@ namespace AutoFan
                     // Check if game is running again
                     if (IsAnyProcessRunning(ProcessesNames))
                     {
+                        PowerPlan.SetMode(PowerPlan.Mode.HighPerformance);
                         FanControl.SetConfiguration(FanControl.Configuration.Turbo);
                     }
                     else
                     {
+                        PowerPlan.SetMode(PowerPlan.Mode.Balanced);
                         FanControl.SetConfiguration(FanControl.Configuration.Silent);
                     }
                 }
